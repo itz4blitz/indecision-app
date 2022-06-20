@@ -24,7 +24,7 @@ var Person = function () {
     _createClass(Person, [{
         key: 'getGreeting',
         value: function getGreeting() {
-            return 'Hi! ' + this.name;
+            return 'Hi, I am ' + this.name + '!';
         }
     }, {
         key: 'getDescription',
@@ -68,8 +68,37 @@ var Student = function (_Person) {
     return Student;
 }(Person);
 
-var me = new Student('Justin', 33, 'Computer Science');
-console.log(me.getDescription());
+// Traveler -> Person
 
-var other = new Student();
-console.log(other.getDescription());
+var Traveler = function (_Person2) {
+    _inherits(Traveler, _Person2);
+
+    function Traveler(name, age, homeLocation) {
+        _classCallCheck(this, Traveler);
+
+        var _this2 = _possibleConstructorReturn(this, (Traveler.__proto__ || Object.getPrototypeOf(Traveler)).call(this, name, age));
+
+        _this2.homeLocation = homeLocation;
+        return _this2;
+    }
+
+    _createClass(Traveler, [{
+        key: 'getGreeting',
+        value: function getGreeting() {
+            var greeting = _get(Traveler.prototype.__proto__ || Object.getPrototypeOf(Traveler.prototype), 'getGreeting', this).call(this);
+
+            if (this.homeLocation) {
+                greeting += ' I am visiting from ' + this.homeLocation + '.';
+            }
+            return greeting;
+        }
+    }]);
+
+    return Traveler;
+}(Person);
+
+var me = new Traveler('Justin', 33, 'Indiana');
+console.log(me.getGreeting());
+
+var other = new Traveler();
+console.log(other.getGreeting());
