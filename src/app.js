@@ -5,8 +5,8 @@ console.log('App.js is running!');
 // logical and operator
 
 const appObject = {
-    title: 'React',
-    subtitle: 'JavaScript',
+    title: 'Indecision App',
+    subtitle: 'An app built using React',
     options: []
 }
 
@@ -29,7 +29,11 @@ const onRemoveAll = () => {
     render();
 }
 
-// const numbers = [55, 101, 1000];
+const onMakeDecision = () => {
+    const randomNum = Math.floor(Math.random() * appObject.options.length);
+    const option = appObject.options[randomNum];
+    alert(option);
+}
 
 const render = () => {
     const template = (
@@ -37,7 +41,7 @@ const render = () => {
             {appObject.title && <h1>{appObject.title}</h1>}
             {appObject.subtitle && <p>{appObject.subtitle}</p>}
             <p>{appObject.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-            <p>{appObject.options.length}</p>
+            <button disabled={appObject.options.length === 0} onClick={onMakeDecision}>What should I do?</button>
             <button onClick={onRemoveAll}>Remove All</button>
 
             {

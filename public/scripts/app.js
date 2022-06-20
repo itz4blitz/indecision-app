@@ -7,8 +7,8 @@ console.log('App.js is running!');
 // logical and operator
 
 var appObject = {
-    title: 'React',
-    subtitle: 'JavaScript',
+    title: 'Indecision App',
+    subtitle: 'An app built using React',
     options: []
 };
 
@@ -31,7 +31,11 @@ var onRemoveAll = function onRemoveAll() {
     render();
 };
 
-// const numbers = [55, 101, 1000];
+var onMakeDecision = function onMakeDecision() {
+    var randomNum = Math.floor(Math.random() * appObject.options.length);
+    var option = appObject.options[randomNum];
+    alert(option);
+};
 
 var render = function render() {
     var template = React.createElement(
@@ -53,9 +57,9 @@ var render = function render() {
             appObject.options.length > 0 ? 'Here are your options' : 'No options'
         ),
         React.createElement(
-            'p',
-            null,
-            appObject.options.length
+            'button',
+            { disabled: appObject.options.length === 0, onClick: onMakeDecision },
+            'What should I do?'
         ),
         React.createElement(
             'button',
